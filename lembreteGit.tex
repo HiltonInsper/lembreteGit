@@ -19,6 +19,14 @@
 \title{Lembrete para uso do {\tt git}}
 % \author{You}
 
+\frenchspacing
+
+\pagestyle{myheadings}
+
+\markboth{Lembrete para uso do {\tt git}}
+         {Lembrete para uso do {\tt git}}
+
+
 \begin{document}
 \maketitle
 
@@ -40,7 +48,8 @@ O texto a seguir é um breve lembrete das diversas etapas necessárias para se t
 		Apenas um dos alunos do grupo deve criar um repositório para o trabalho em grupo, em \\
 		\url{https://github.com/new}
 
-		Não se deve esquecer de criar o conteúdo inicial, selecionando a opção ``{\tt Initialize this repository with a README}''. 
+		Não se deve esquecer de criar o conteúdo inicial, selecionando a opção \\
+		``{\tt Initialize this repository with a README}''. 
                 
 	\item {\bf Convite para o grupo}
 
@@ -69,45 +78,109 @@ O texto a seguir é um breve lembrete das diversas etapas necessárias para se t
 		Um dos locais mais padronizados para se fazer isso é o terminal de comandos de seu computador. No MS-Windows, ele é o {\tt cmd.exe}.  No MacOS, nas distribuições GNU/Linux ele é o {\tt shell}. Em qualquer caso, digite 
 		\begin{quote}
 		\begin{tt}		
-			git config --global user.name "Seu Nome"
+			git config $--$global user.name "Seu Nome"
 		\end{tt}			
 		\end{quote} 
 		onde {\tt {\em Seu Nome}} deve ser trocado pelo nome do usuário, e depois digite
 		\begin{quote}
 		\begin{tt}		
-			git config --global user.email "seu.email@mailserver.com"
+			git config $--$global user.email "seu.email@mailserver.com"
 		\end{tt}			
 		\end{quote} 
 	
-                
 	\item {\bf Clonagem do repositório do \url{github.com}}
     	Para criar uma cópia de seu repositório, hospedado no \url{github.com}, clique no botão {\tt Clone or download} na aba {\tt Code} da página de seu projeto. Isto fará surgir uma pequena janela. Clique no botão que está à direita da caixa de texto que tem a URL iniciada por {\tt https://github.com}
     	
     	Crie um diretório que vai hospedar seu projeto {\tt git}. Por exemplo, em sua pasta pessoal (que é mostrada quando se entra no terminal de comandos), crie o diretório {\tt git}. 
     	
     	Então vá ao terminal de comandos (ou {\em shell}) comentado no item anterior e digite 
-		\begin{quote}
-		\begin{tt}		
-			git clone
-		\end{tt}			
-		\end{quote} 
-		e, sem pressionar {\tt Enter}, cole no terminal a URL copiada do portal \url{github.com}
+	\begin{quote}
+	\begin{tt}
+	    git clone
+	\end{tt}
+	\end{quote}
+	e, sem pressionar {\tt Enter}, cole no terminal a URL copiada do portal \url{github.com}
 		
-		Finalmente pressione {\tt Enter}. Isto vai transferir os arquivos de seu repositório no \url{github.com} para o repositório local, em seu computador.
+	Finalmente pressione {\tt Enter}. Isto vai transferir os arquivos de seu repositório 
+	no \url{github.com} para o repositório local, em seu computador.
 		
-		Agora você pode trabalhar com o repositório local, manter um histórico de suas alterações dos arquivos e, finalmente, transferir arquivos do \url{github.com} para sua máquina e de sua máquina para o \url{github.com}, através do comando {\tt git}.
+	Agora você pode trabalhar com o repositório local, manter um histórico de suas alterações 
+	dos arquivos e, finalmente, transferir arquivos do \url{github.com} para sua máquina e de 
+	sua máquina para o \url{github.com}, através do comando {\tt git}.
                 
-	\item {\bf Criação de novos arquivos}
+    \item {\bf Criação de novos arquivos}
 
     	Os novos arquivos de seu projeto devem todos ser criados no diretório que o {\tt git} acabou de criar. Recapitulando, se você chamou o diretório para criar repositórios com o nome de {\tt git}, como sugerido, e se seu projeto no \url{github.com} se chama {\tt Proj1}, a operação {\tt clone} criou o diretório {\tt Proj1} dentro do diretório {\tt git}.
     	
     	Crie seus arquivos de programa normalmente dentro deste diretório, através de seu editor preferido, que o {\tt git} se encarregará de acompanhar suas versões;
                 
     \item {\bf Ciclo de trabalho}
+	Nosso ciclo de trabalho no uso do {\tt git} pode ser resumido em apenas duas etapas: 
+	trabalho no repositório local e transferência para o repositório remoto, no 
+	\url{github.com}. 
+	
+	A questão da transferência será discutida nos itens \ref{itm:UpdateFromLocal} e 
+	\ref{itm:UpdateFromRemote}, a seguir. Aqui falaremos do trabalho no repositório local. 
+	
+	A cada vez que um arquivo é alterado, é preciso informar ao repositório local. Isto é feito 
+	pelo comando
+	\begin{quote}
+	\begin{tt}
+	    git add {\em nome\_do\_arquivo}
+	\end{tt}
+	\end{quote}
+
+	Naturalmente, {\tt {\em nome\_do\_arquivo}} é um termo genérico que deve ser substituído 
+	por cada um dos arquivos que se deseja incorporar ao projeto, ou que foi alterado. O 
+	próximo passo é transferi-los para o repositório local. 
+	
+	Isto é feito por 
+	\begin{quote}
+	\begin{tt}
+	    git comit -m ``{\em Descrição da alteração efetuada}''
+	\end{tt}
+	\end{quote}
         
-	\item {\bf Transferência para repositório local}
-                
-    \item {\bf Transferência para repositório no \url{github.com}}
+	Naturalmente, também aqui {\em Descrição da alteração efetuada} é um termo genérico que 
+	deve ser substituído por uma mensagem esclarecedora -- {\bf entre aspas} --, que descreve 
+	tão bem quanto possível as alterações feitas neste conjunto de atualizações. 
+	
+	Esta mensagem será essencial para entendermos as alterações efetuadas quando estivermos 
+	lendo o histórico do projeto -- por exemplo, para descobrir onde surgiu um {\em bug} no 
+	código.
+	
+    \item \label{itm:UpdateFromRemote}
+	{\bf Transferência para repositório local}
+        
+        Antes de transferir as alterações para o repositório do \url{github.com}. é preciso 
+	confirmar se algum de nossos colegas não alterou algum dos softwares. Para isso, usamos o 
+	comando 
+	\begin{quote}
+	\begin{tt}
+	    git pull
+	\end{tt}
+	\end{quote}
+	Aqui, a palavra {\em pull} tem o sentido de ``puxar'', ou trazer, as alterações para nosso
+	repertório local.
+	
+	Se algum dos colegas tiver trabalhado exatamente onde trabalhamos, o {\tt git} indicará um 
+	conflito de alterações. E deixará marcas no arquivo para podermos resolver o conflito. 
+        
+    \item \label{itm:UpdateFromLocal}
+	{\bf Transferência para repositório no \url{github.com}}
+	
+	Finalmente, depois de terminada uma sessão de trabalho é hora de atualizar os arquivos no 
+	\url{github.com}. Para isso, basta fazer 
+	\begin{quote}
+	\begin{tt}
+	    git push
+	\end{tt}
+	\end{quote}
+	Aqui, a palavra {\em pull} tem o sentido de ``empurrar'', ou levar, as alterações para o
+	repositório comum, que fica na nuvem do \url{github.com}
+	
+	Neste momento, poderá ser solicitada o {\em login} no \url{github.com} Use o mesmo endereço
+	de {\em e-mail} fornecido antes. E, naturalmente, a mesma senha.
         
 \end{enumerate}
 
